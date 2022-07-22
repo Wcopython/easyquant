@@ -1,5 +1,6 @@
 import os
 import sys
+import logging
 
 import logbook
 from logbook import Logger, StreamHandler, FileHandler
@@ -19,6 +20,12 @@ class DefaultLogHandler(object):
         :return log handler object
         """
         self.log = Logger(name)
+
+        _stream_handler = logging.StreamHandler(stream=sys.stdout)
+        _stream_handler.setFormatter(logging.Formatter(fmt='[%(asctime)s][%(filename)s][%(lineno)s][%(levelname)s]]'
+                                                           ' %(message)s'))
+
+        self.log.handlers = [_stream_handler]
         if log_type == 'stdout':
             StreamHandler(sys.stdout, level=loglevel).push_application()
         if log_type == 'file':
