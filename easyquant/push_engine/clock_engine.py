@@ -1,13 +1,15 @@
 # coding: utf-8
 import datetime
+import time
+
 from collections import deque
 from threading import Thread
+from dateutil import tz
 
 import pandas as pd
 import arrow
-from dateutil import tz
 
-import time
+
 from ..easydealutils import time as etime
 from ..event_engine import Event
 
