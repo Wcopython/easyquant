@@ -5,7 +5,8 @@ from easyquant import DefaultQuotationEngine, DefaultLogHandler, PushBaseEngine
 
 print('easyquant 测试 DEMO')
 print('请输入你使用的券商:')
-choose = input('1: 华泰 2: 佣金宝 3: 银河 4: 雪球模拟组合 5: 广发\n:')
+#choose = input('1: 华泰 2: 佣金宝 3: 银河 4: 雪球模拟组合 5: 广发\n:')
+choose = "4"
 
 broker = 'ht'
 if choose == '2':
@@ -18,8 +19,10 @@ elif choose == '5':
     broker = 'gf'
 
 
+
 def get_broker_need_data(choose_broker):
-    need_data = input('请输入你的帐号配置文件路径(直接回车使用 %s.json)\n:' % choose_broker)
+    #need_data = input('请输入你的帐号配置文件路径(直接回车使用 %s.json)\n:' % choose_broker)
+    need_data = ""
     if need_data == '':
         return '%s.json' % choose_broker
     return need_data
@@ -38,8 +41,8 @@ class LFEngine(PushBaseEngine):
         return self.source.stocks(['162411', '000002'])
 
 
-quotation_choose = input('请输入使用行情引擎 1: sina 2: leverfun 十档 行情(目前只选择了 162411, 000002)\n:')
-
+#quotation_choose = input('请输入使用行情引擎 1: sina 2: leverfun 十档 行情(目前只选择了 162411, 000002)\n:')
+quotation_choose = "1"
 quotation_engine = DefaultQuotationEngine if quotation_choose == '1' else LFEngine
 
 push_interval = int(input('请输入行情推送间隔(s)\n:'))

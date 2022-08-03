@@ -1,6 +1,5 @@
 import os
 import sys
-import logging
 
 import logbook
 from logbook import Logger, StreamHandler, FileHandler
@@ -21,13 +20,12 @@ class DefaultLogHandler(object):
         """
         self.log = Logger(name)
 
-        _stream_handler = logging.StreamHandler(stream=sys.stdout)
-        _stream_handler.setFormatter(logging.Formatter(fmt='[%(asctime)s][%(filename)s][%(lineno)s][%(levelname)s]]'
-                                                           ' %(message)s'))
-
-        self.log.handlers = [_stream_handler]
         if log_type == 'stdout':
-            StreamHandler(sys.stdout, level=loglevel).push_application()
+            StreamHandler(sys.stdout, level=loglevel,
+                          format_string='[{record.time:%Y-%m-%d %H:%M:%S}][{record.filename}][{record.lineno}][{record.level_name}]]{record.message}',
+
+                          ).push_application()
+
         if log_type == 'file':
             if os.path.isdir(filepath) and not os.path.exists(filepath):
                 os.makedirs(os.path.dirname(filepath))

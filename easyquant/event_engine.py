@@ -29,7 +29,7 @@ class EventEngine:
         self.__handlers = defaultdict(list)
 
     def __run(self):
-        """启动引擎"""
+        """启动引擎，  # 一个事件出发， 就有 启动一个线程，略微有些浪费"""
         while self.__active:
             try:
                 event = self.__queue.get(block=True, timeout=1)
