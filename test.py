@@ -45,10 +45,11 @@ class LFEngine(PushBaseEngine):
 quotation_choose = "1"
 quotation_engine = DefaultQuotationEngine if quotation_choose == '1' else LFEngine
 
-push_interval = int(input('请输入行情推送间隔(s)\n:'))
-quotation_engine.PushInterval = push_interval
+# push_interval = int(input('请输入行情推送间隔(s)\n:'))
+quotation_engine.PushInterval = 2 #push_interval
 
-log_type_choose = input('请输入 log 记录方式: 1: 显示在屏幕 2: 记录到指定文件\n: ')
+#log_type_choose = input('请输入 log 记录方式: 1: 显示在屏幕 2: 记录到指定文件\n: ')
+log_type_choose = "1"
 log_type = 'stdout' if log_type_choose == '1' else 'file'
 
 log_filepath = input('请输入 log 文件记录路径\n: ') if log_type == 'file' else ''

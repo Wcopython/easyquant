@@ -116,7 +116,9 @@ class ClockEngine:
         self.is_active = True
         self.clock_engine_thread = Thread(target=self.clocktick, name="ClockEngine.clocktick")
         self.sleep_time = 1
-        self.trading_state = True if (etime.is_tradetime(datetime.datetime.now()) and etime.is_trade_date(datetime.datetime.now())) else False
+        self.trading_state = \
+            True if (etime.is_tradetime(datetime.datetime.now()) and
+                     etime.is_trade_date(datetime.datetime.now())) else False
         self.clock_moment_handlers = deque()
         self.clock_interval_handlers = set()
 
